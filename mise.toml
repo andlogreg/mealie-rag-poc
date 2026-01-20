@@ -1,0 +1,9 @@
+[tools]
+#pre-commit = "latest"
+
+[settings]
+experimental = true
+
+[hooks]
+# enter = "bash ./scripts/setup_project"
+

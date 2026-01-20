@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+echo "Sample setup script"
+
+# Trust and install tools from mise.toml
+# /usr/local/bin/mise trust /workspaces/"$DEVPOD_WORKSPACE_ID"/mise.toml && /usr/local/bin/mise install
