@@ -13,3 +13,7 @@ OLLAMA_BASE_URL="http://host.docker.internal:11434"
 
 [hooks]
 enter = "bash ./scripts/setup_project"
+
+[tasks.docker-build]
+description = "Build Docker images"
+run = "bash ./scripts/build_docker_images"
