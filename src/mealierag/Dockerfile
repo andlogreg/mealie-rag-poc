@@ -30,7 +30,6 @@ COPY --from=builder --chown=app:app /app/.venv /app/.venv
 USER app
 
 # Expose default port
-# TODO: do something to contemplate changing the port?
 EXPOSE 7860
 
 # Run the application
