@@ -37,12 +37,16 @@ def chat_fn(message: str, history: List[List[str]]):
     ollama_client = ollama.Client(host=settings.ollama_base_url)
     vector_db_client = get_vector_db_client(settings.qdrant_url)
 
+    partial = " 🔍 Finding relevant recipes..."
+    yield partial
     hits = get_hits(message, ollama_client, vector_db_client)
     if not hits:
         yield "I couldn't find any relevant recipes."
         return
     hit_str = print_hits(hits)
 
+    partial += "\n 🤔 Done! Processing your request..."
+    yield partial
     messages = populate_messages(message, hits)
 
     response = ollama_client.chat(
