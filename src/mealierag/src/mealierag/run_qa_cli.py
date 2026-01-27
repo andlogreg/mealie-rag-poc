@@ -41,9 +41,9 @@ def print_hits(hits: List[ScoredPoint]):
 
 
 def generate_response(messages: List[Dict[str, str]]):
-    print("\nThinking...", end="", flush=True)
+    print("\nThinking...\n", end="", flush=True)
     try:
-        logger.info("Generating response...", extra={"messages": messages})
+        logger.debug("Generating response...", extra={"messages": messages})
         options = {
             "temperature": settings.llm_temperature,
         }
@@ -80,7 +80,7 @@ def main():
     while True:
         try:
             user_input = input("\n👤 You: ")
-            logger.info(f"Received input: {user_input}. This is Name: {__name__}")
+            logger.debug("Received user input", extra={"user_input": user_input})
             if user_input.lower() in ["exit", "quit"]:
                 break
 

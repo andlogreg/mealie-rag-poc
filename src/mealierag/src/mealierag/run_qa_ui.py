@@ -36,7 +36,7 @@ def print_hits(hits: List[ScoredPoint]):
         if isinstance(tags, list):
             tags = ", ".join(tags)
         hits_table += f"| {hit.payload.get('name', 'N/A')} | {hit.payload.get('rating', 'N/A')} | {tags} | {hit.payload.get('category', 'N/A')} |\n"
-    logger.info(hits_table)
+    logger.debug("Hits table", extra={"hits_table": hits_table})
     return hits_table
 
 
@@ -57,7 +57,7 @@ def chat_fn(message: str, history: List[List[str]]):
     yield partial
     messages = populate_messages(message, hits)
 
-    logger.info("Generating response...", extra={"messages": messages})
+    logger.debug("Generating response...", extra={"messages": messages})
     options = {
         "temperature": settings.llm_temperature,
     }
@@ -72,7 +72,7 @@ def chat_fn(message: str, history: List[List[str]]):
         partial += chunk["message"]["content"]
         yield partial
 
-    logger.info("Response generation finished.", extra={"partial": partial})
+    logger.debug("Response generation finished.", extra={"partial": partial})
 
     partial += (
         "\n\n" + "### 🐛 Recipes context used for the above answer: ###\n" + hit_str

@@ -7,6 +7,7 @@ Contains main entry points.
 import logging
 
 import typer
+from pythonjsonlogger.json import JsonFormatter
 
 from .run_fetch import main as fetch_main
 from .run_ingest import main as ingest_main
@@ -17,11 +18,16 @@ app = typer.Typer()
 
 
 def setup_logging(log_level: str, dependency_log_level: str):
-    logging.basicConfig(
-        level=dependency_log_level.upper(),
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
+    formatter = JsonFormatter(
+        fmt="%(asctime)s %(name)s %(levelname)s %(msg)s", style="%"
     )
+    handler = logging.StreamHandler()
+    handler.setFormatter(formatter)
+
+    root_logger = logging.getLogger()
+    root_logger.addHandler(handler)
+    root_logger.setLevel(dependency_log_level.upper())
+
     logging.getLogger("mealierag").setLevel(log_level.upper())
 
 
