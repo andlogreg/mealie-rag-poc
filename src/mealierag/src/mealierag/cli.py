@@ -9,6 +9,7 @@ import logging
 import typer
 from pythonjsonlogger.json import JsonFormatter
 
+from .config import settings
 from .run_fetch import main as fetch_main
 from .run_ingest import main as ingest_main
 from .run_qa_cli import main as qa_cli_main
@@ -37,6 +38,7 @@ def callback(log_level: str = "INFO", dependency_log_level: str = "WARNING"):
     Mealie RAG CLI.
     """
     setup_logging(log_level, dependency_log_level)
+    logging.getLogger("mealierag").info(f"Configuration: {settings.model_dump_json()}")
 
 
 @app.command()
