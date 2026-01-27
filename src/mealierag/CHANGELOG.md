@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/andlogreg/mealie-rag-poc/compare/mealierag-v0.5.0...mealierag-v0.5.1) (2026-01-27)
+
+
+### Bug Fixes
+
+* **cli:** set log levels with env variables ([#13](https://github.com/andlogreg/mealie-rag-poc/issues/13)) ([0c6a607](https://github.com/andlogreg/mealie-rag-poc/commit/0c6a607d5cc94b7bd8e8cab30668ef92530d6b54))
+
 ## [0.5.0](https://github.com/andlogreg/mealie-rag-poc/compare/mealierag-v0.4.0...mealierag-v0.5.0) (2026-01-27)
 
 
